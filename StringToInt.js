@@ -1,2 +1,2 @@
-function StringToInt(noFloat) { var a = this.replace(/[^0-9|.]/g, '').replace(/^0+/g, ''); return noFloat ? parseInt(a) : parseFloat(a); }
+function StringToInt(noFloat, i) { var i = 0, a = this.replace(/[^0-9|.]/g, '').replace(/\./g, function(all, match) { return i++===0 ? '.' : ''; }).replace(/^0+/g, '');  return noFloat ? parseInt(a) : parseFloat(a, i); }
 Object['defineProperty'] && !String.prototype.hasOwnProperty('toInt') ? Object.defineProperty(String.prototype, 'toInt', { value: StringToInt }) : String.prototype.toInt = StringToInt;
